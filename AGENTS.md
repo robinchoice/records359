@@ -13,7 +13,7 @@ Keine automatischen Checks. Geänderte Seiten lokal ansehen (`python3 -m http.se
 ## Deploy
 
 - Coolify deployt per Repo-Webhook bei jedem Push auf `main`, der `site/` ändert. Ein Push geht also direkt live.
-- Prüfen: `curl -sI https://359records.de` und `curl -s https://klanglabor.359records.de | grep -o '<title>[^<]*'`.
+- Prüfen: `curl -sI https://359records.de` und `curl -s https://klanglabor.359records.de | grep -o '<title[^<]*'`.
 
 ## Fallen
 
