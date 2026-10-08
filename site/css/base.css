@@ -1,0 +1,62 @@
+@import url(fonts.css);
+
+:root {
+  --yellow: #f2c500;
+  --black: #111;
+  --white: #fff;
+  --paper: #f4f1e8;
+  --blue: #1d4f9c;
+  --red: #d6211f;
+  --cond: 'Barlow Condensed', sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; font: 17px/1.55 Barlow, sans-serif; color: var(--black); -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+img { display: block; max-width: 100%; }
+h1, h2, h3 { font-family: var(--cond); font-weight: 800; text-transform: uppercase; line-height: .95; margin: 0; }
+.small { font: 600 13px var(--cond); letter-spacing: .1em; text-transform: uppercase; }
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 28px; }
+:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+
+/* Road signs */
+.sign { display: inline-block; background: var(--yellow); border-radius: 10px; padding: 6px; text-decoration: none; }
+.sign > span { display: block; border: 3px solid var(--black); border-radius: 6px; padding: 6px 18px 8px; text-align: center; }
+.sign b { display: block; font: 800 30px/1 var(--cond); text-transform: uppercase; letter-spacing: .02em; }
+.sign small { display: block; font: 600 11px var(--cond); letter-spacing: .12em; text-transform: uppercase; margin-top: 2px; }
+.sign.end { position: relative; overflow: hidden; }
+.sign.end::after { content: ''; position: absolute; left: -10%; right: -10%; top: 50%; height: 9%; background: var(--red); transform: rotate(-24deg); }
+.bsign { display: inline-block; background: var(--blue); color: var(--white); border-radius: 10px; padding: 5px; text-decoration: none; }
+.bsign > span { display: block; border: 3px solid var(--white); border-radius: 6px; padding: 4px 16px 6px; }
+.bsign b { font: 800 26px/1 var(--cond); text-transform: uppercase; letter-spacing: .06em; }
+.plate { display: inline-block; background: var(--white); color: var(--black); border: 3px solid var(--black); border-radius: 5px; padding: 4px 14px; font: 700 20px var(--cond); text-transform: uppercase; letter-spacing: .03em; }
+
+/* Header */
+.top { position: sticky; top: 0; z-index: 5; }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 76px; }
+.nav { display: flex; align-items: center; gap: 6px; }
+.nav a, .lang { text-decoration: none; font: 700 17px var(--cond); text-transform: uppercase; letter-spacing: .04em; padding: 6px 12px; border-radius: 4px; }
+.lang { background: none; border: 2px solid currentColor; cursor: pointer; color: inherit; padding: 3px 8px; margin-left: 6px; }
+.burger { display: none; background: none; border: 0; font-size: 30px; cursor: pointer; color: inherit; }
+
+/* Footer */
+footer { padding: 28px 0 48px; }
+footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; align-items: center; }
+footer nav { display: flex; gap: 16px; flex-wrap: wrap; }
+
+/* Legal pages */
+.legal { padding: 56px 0 80px; max-width: 760px; }
+.legal h1 { font-size: clamp(44px, 7vw, 72px); margin-bottom: 28px; }
+.legal h2 { font-size: 26px; margin: 32px 0 8px; }
+.legal p { margin: 0 0 12px; }
+
+@media (max-width: 760px) {
+  .wrap { padding: 0 16px; }
+  .top .wrap { height: 64px; }
+  .nav { display: none; position: absolute; top: 64px; left: 0; right: 0; flex-direction: column; align-items: stretch; padding: 8px; }
+  .nav.open { display: flex; }
+  .nav a { padding: 12px; font-size: 20px; }
+  .lang { align-self: flex-start; margin: 8px 12px; }
+  .burger { display: block; }
+}
