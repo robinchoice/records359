@@ -18,6 +18,6 @@ Keine automatischen Checks. Geänderte Seiten lokal ansehen (`python3 -m http.se
 ## Fallen
 
 - Deutsch steht im HTML, Englisch im Attribut `data-en` am selben Element (`data-en-content` bei Meta-Tags). `js/main.js` tauscht beim Umschalten `innerHTML`. Jeder neue Text braucht beide Sprachen.
-- Die nginx-Konfiguration steht in Coolify (Custom Nginx Configuration), nicht im Repo. Sie liefert für `klanglabor.359records.de` bei `/` die Datei `klanglabor/index.html` aus, alles andere teilen sich beide Hostnamen. Links zwischen Label und Klanglabor sind deshalb absolut.
+- Die nginx-Konfiguration steht in Coolify (Custom Nginx Configuration), nicht im Repo. Sie leitet `www.359records.de` per 301 auf `359records.de` um und liefert für `klanglabor.359records.de` bei `/` die Datei `klanglabor/index.html` aus, alles andere teilen sich beide Hostnamen. Links zwischen Label und Klanglabor sind deshalb absolut.
 - CSP erlaubt nur `'self'`: keine Inline-Skripte, keine `style`-Attribute, keine externen Einbettungen.
 - Die Fotos stammen aus dem Archiv `359 Records` auf pi-a und liegen als WebP in 700 und 1400 px vor.
