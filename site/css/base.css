@@ -25,8 +25,6 @@ h1, h2, h3 { font-family: var(--cond); font-weight: 800; text-transform: upperca
 .sign > span { display: block; border: 3px solid var(--black); border-radius: 6px; padding: 6px 18px 8px; text-align: center; }
 .sign b { display: block; font: 800 30px/1 var(--cond); text-transform: uppercase; letter-spacing: .02em; }
 .sign small { display: block; font: 600 11px var(--cond); letter-spacing: .12em; text-transform: uppercase; margin-top: 2px; }
-.sign.end { position: relative; overflow: hidden; }
-.sign.end::after { content: ''; position: absolute; left: -10%; right: -10%; top: 50%; height: 9%; background: var(--red); transform: rotate(-24deg); }
 .bsign { display: inline-block; background: var(--blue); color: var(--white); border-radius: 10px; padding: 5px; text-decoration: none; }
 .bsign > span { display: block; border: 3px solid var(--white); border-radius: 6px; padding: 4px 16px 6px; }
 .bsign b { font: 800 26px/1 var(--cond); text-transform: uppercase; letter-spacing: .06em; }

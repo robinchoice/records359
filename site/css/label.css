@@ -14,10 +14,7 @@ body { background: var(--paper); }
 .bigsign .name { font: 800 clamp(36px, 5vw, 64px)/1 var(--cond); text-transform: uppercase; letter-spacing: .06em; }
 .bigsign .sub { font: 600 clamp(14px, 1.6vw, 20px) var(--cond); letter-spacing: .14em; text-transform: uppercase; margin-top: 8px; }
 .hero h1 { font-size: clamp(44px, 6vw, 80px); margin-bottom: 18px; }
-.hero p { font-size: 19px; max-width: 520px; margin: 0 0 24px; }
-.route { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
-.route .arrow { font: 800 34px var(--cond); }
-.km { font: 700 18px var(--cond); text-transform: uppercase; }
+.hero p { font-size: 19px; max-width: 520px; margin: 0; }
 
 /* Photo band */
 .band { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 380px; gap: 6px; }
