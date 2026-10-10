@@ -1,93 +1,166 @@
-:root { --mist: #eef1f5; }
-body { background: var(--white); }
-.top { background: var(--white); border-bottom: 3px solid var(--blue); }
-.top .wrap { height: 72px; }
-.nav a:hover { background: var(--mist); }
-.nav a.btn { background: var(--blue); color: var(--white); }
-.tag359 { display: inline-block; background: var(--yellow); color: var(--black); border: 2px solid var(--black); border-radius: 4px; padding: 0 6px; font: 800 14px var(--cond); vertical-align: middle; margin-left: 8px; text-decoration: none; }
+/* Colours and outlines from the hand-painted wall and the Klanglabor door print. */
+:root {
+  --black: #1b191d;
+  --paper: #faf8f2;
+  --mist: #f0ecdf;
+  --wall-red: #e54c52;
+  --wall-cyan: #8ac4cc;
+  --wall-yellow: #f0bc3b;
+  --wall-lilac: #b7afd9;
+  --wall-green: #3d786d;
+}
+body { background: var(--paper); }
+:focus-visible { outline-color: var(--black); }
+.top { background: var(--paper); border-bottom: 3px solid var(--black); }
+.top .wrap { height: 80px; }
+.nav a:hover { background: var(--wall-cyan); }
+.nav a.btn { background: var(--wall-yellow); color: var(--black); border: 2px solid var(--black); }
+.bsign { background: var(--paper); color: var(--black); border: 3px solid var(--black); border-radius: 10px 16px 12px 6px; padding: 0; }
+.bsign > span { border: 0; padding: 9px 14px 11px; }
+.bsign b { letter-spacing: .01em; }
+.top .bsign { box-shadow: 4px 4px 0 var(--wall-red); }
+.tag359 { display: inline-block; background: var(--wall-yellow); color: var(--black); border: 2px solid var(--black); border-radius: 4px; padding: 0 6px; font: 800 14px var(--cond); vertical-align: middle; margin-left: 8px; text-decoration: none; }
+.plate { background: var(--paper); border-radius: 6px 10px 6px 10px; }
+a.plate { text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
+a.plate:hover { background: var(--wall-yellow); }
 
-/* Hero */
-.hero { display: grid; grid-template-columns: 1fr 1fr; min-height: min(80vh, 720px); }
-.hero .txt { padding: 64px 48px 56px max(28px, calc((100vw - 1200px) / 2 + 28px)); display: flex; flex-direction: column; justify-content: center; }
-.hero h1 { font-size: clamp(64px, 9vw, 140px); color: var(--blue); }
+/* The photo stays complete, surrounded by the same artwork as the door print. */
+.hero { display: grid; grid-template-columns: 1fr 1fr; align-items: center; min-height: min(80vh, 760px); padding: 48px 0 64px; border-bottom: 3px solid var(--black); }
+.hero .txt { min-width: 0; padding: 32px 36px 32px max(28px, calc((100vw - 1200px) / 2 + 28px)); }
+.hero h1 { font-size: clamp(68px, 8.5vw, 124px); color: var(--black); letter-spacing: -.025em; margin-top: 22px; }
 .hero p { font-size: 20px; max-width: 520px; margin: 18px 0 26px; }
-.plates { display: flex; flex-wrap: wrap; gap: 8px; }
-.hero .ph { align-self: center; display: flex; flex-direction: column; align-items: flex-end; }
-.hero .ph img { width: 100%; height: auto; }
-.hero .ph .bsign { margin: 16px 24px 0; }
+.hero .hero-slogan { font: 700 clamp(24px, 2.8vw, 36px)/1.15 var(--cond); margin: 18px 0 26px; }
+.plates { display: flex; flex-wrap: wrap; gap: 12px; }
+.hero .hero-cta { background: var(--wall-yellow); }
+.hero .hero-cta:hover { background: var(--wall-cyan); }
+.hero .plates .plate { font-size: 18px; text-transform: none; letter-spacing: 0; }
+.hero .ph { position: relative; margin: 0 max(28px, calc((100vw - 1200px) / 2 + 28px)) 0 0; padding: 42px 34px 36px; background: var(--black) url('/img/klanglabor-wand.svg') center / cover; border: 3px solid var(--black); border-radius: 32px 56px 28px 48px; }
+.hero .ph img { width: 100%; height: auto; border: 4px solid var(--black); border-radius: 10px; }
+.hero .ph .bsign { display: table; margin: 20px 0 0 auto; background: var(--wall-cyan); transform: rotate(-3deg); }
 .hero .ph .bsign b { font-size: 20px; }
 
-section { padding: 96px 0; }
+section { padding: 96px 0; scroll-margin-top: 80px; }
 .head { display: flex; align-items: center; gap: 16px; margin-bottom: 36px; }
 .head h2 { font-size: clamp(48px, 7vw, 88px); }
-.num { width: 54px; height: 54px; border-radius: 50%; background: var(--blue); color: var(--white); display: grid; place-items: center; font: 800 26px var(--cond); flex: none; }
+.num { width: 54px; height: 54px; border: 3px solid var(--black); border-radius: 45% 55% 52% 48%; background: var(--wall-red); color: var(--black); display: grid; place-items: center; font: 800 26px var(--cond); flex: none; }
+.ways .num { background: var(--wall-cyan); }
+.equipment .num { background: var(--wall-yellow); }
+#referenzen .num { background: var(--wall-lilac); }
 
-/* Services */
-.svcs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.svc { border: 3px solid var(--black); border-radius: 10px; padding: 22px; }
-.svc h3 { font-size: 34px; margin: 10px 0 8px; }
+.svcs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.svc { border: 3px solid var(--black); border-radius: 12px 24px 12px 24px; padding: 26px; background: var(--white); }
+.svc h3 { font-size: 34px; margin: 20px 0 12px; }
 .svc p { margin: 0; font-size: 16px; }
-.svc .ico { font-size: 34px; line-height: 1; }
+.svc .ico { font-size: 30px; line-height: 1; width: 54px; height: 54px; display: grid; place-items: center; background: var(--wall-red); border: 2px solid var(--black); border-radius: 50% 42% 48% 40%; }
+.svc:nth-child(2) .ico { background: var(--wall-cyan); }
+.svc:nth-child(3) .ico { background: var(--wall-yellow); }
+.svc:nth-child(4) .ico { background: var(--wall-lilac); }
+.svc:nth-child(5) .ico { background: var(--wall-green); color: var(--white); }
+.svc:nth-child(6) .ico { background: #e9bfbc; }
 
-/* Ways to work */
-.ways { background: var(--mist); }
-.cards { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
-.card { background: var(--white); border-radius: 14px; overflow: hidden; border: 3px solid var(--black); display: flex; flex-direction: column; }
-.card img { width: 100%; height: 300px; object-fit: cover; }
+.ways { background: var(--mist); border-block: 3px solid var(--black); }
+.cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.card { background: var(--paper); border-radius: 14px; overflow: hidden; border: 3px solid var(--black); display: flex; flex-direction: column; }
+.card img { width: 100%; height: 300px; object-fit: cover; border-bottom: 3px solid var(--black); }
 .card.studio-card img { height: auto; }
 .card .in { padding: 26px; }
-.card h3 { font-size: 40px; margin: 10px 0; }
-.card.mob { background: var(--blue); color: var(--white); border-color: var(--blue); }
-.big { font: 800 80px/1 var(--cond); }
-.partner { display: flex; gap: 24px; align-items: center; border: 3px dashed var(--blue); border-radius: 14px; padding: 24px 28px; margin-top: 24px; }
-.partner h3 { font-size: 32px; }
-.partner p { margin: 4px 0 0; }
+.card h3 { font-size: 40px; margin: 14px 0; }
+.card.mob { background: var(--wall-cyan); }
+.card:nth-child(3) { background: var(--wall-lilac); }
+.big { font: 800 80px/1 var(--cond); margin-top: 18px; }
+.partner { display: grid; grid-template-columns: 2fr 3fr; align-items: center; border: 3px solid var(--black); border-radius: 14px; overflow: hidden; margin-top: 32px; background: var(--paper); }
+.partner:not(:has(.partner-photo)) { display: flex; gap: 24px; padding: 24px 28px; }
+.partner-photo { margin: 0; min-width: 0; }
+.partner-photo img { width: 100%; height: auto; }
+.partner-photo figcaption { padding: 8px 16px; font-size: 13px; }
+.partner-copy { padding: 28px; min-width: 0; }
+.partner h3 { font-size: 32px; margin: 12px 0; }
+.partner h3 a { text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.partner p { margin: 0 0 18px; }
+.partner .plate { background: var(--wall-yellow); font-size: 18px; }
 
-/* Inside the studio */
 .studio-photos { margin-top: 48px; }
 .studio-photos h3 { font-size: 40px; margin-bottom: 24px; }
 .studio-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
-.studio-photos figure { margin: 0; border: 3px solid var(--black); border-radius: 14px; overflow: hidden; background: var(--white); }
+.studio-photos figure { margin: 0; border: 3px solid var(--black); border-radius: 14px; overflow: hidden; background: var(--paper); }
 .studio-gallery img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
-.studio-photos figcaption { padding: 14px 20px; }
+.studio-photos figcaption { padding: 14px 20px; border-top: 3px solid var(--black); }
 .drum-room { position: relative; aspect-ratio: 3 / 4; overflow: hidden; }
 .drum-room img { position: absolute; width: 210%; max-width: none; height: auto; aspect-ratio: auto; left: -74.5%; top: -18%; }
 .studio-heart img { width: 100%; height: auto; aspect-ratio: 2 / 1; object-fit: cover; object-position: center 80%; }
-.studio-heart figcaption { background: var(--blue); color: var(--white); }
+.studio-heart figcaption { background: var(--wall-yellow); }
 
-/* References */
+.equipment-intro { max-width: 680px; margin: -12px 0 28px; font-size: 20px; }
+.equipment-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.equipment-group { background: var(--white); border: 3px solid var(--black); border-radius: 12px; padding: 26px; box-shadow: 0 -8px 0 var(--wall-cyan); margin-top: 8px; }
+.equipment-group:nth-child(2) { box-shadow: 0 -8px 0 var(--wall-lilac); }
+.equipment-group:nth-child(3) { box-shadow: 0 -8px 0 var(--wall-yellow); }
+.equipment-group h3 { font-size: 34px; }
+.equipment-group ul { list-style: none; padding: 0; margin: 22px 0 0; }
+.equipment-group li { padding: 10px 0; overflow-wrap: anywhere; }
+.equipment-group li + li { border-top: 1px solid #d5d0c5; }
+
 .refs { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
 .ref { display: grid; grid-template-columns: 160px 1fr; gap: 20px; align-items: center; border-bottom: 3px solid var(--black); padding-bottom: 20px; }
-.ref img { width: 160px; height: 160px; object-fit: cover; border-radius: 10px; }
+.ref img { width: 160px; height: 160px; object-fit: cover; border: 3px solid var(--black); border-radius: 10px; }
 .ref h3 { font-size: 34px; margin: 6px 0; }
+.ref-links a:hover { color: #9c283d; }
 
-/* Request */
-.request { background: var(--blue); color: var(--white); }
-.request .num { background: var(--white); color: var(--blue); }
+.request { background: var(--black) url('/img/klanglabor-wand.svg') center / cover; border-block: 3px solid var(--black); padding: 72px 28px; }
+.request .wrap { max-width: 1144px; background: var(--paper); border: 3px solid var(--black); border-radius: 18px 32px 18px 32px; padding: 48px; }
+.request .num { background: var(--wall-green); color: var(--white); }
 .request p { font-size: 20px; max-width: 680px; margin: 0; }
-
+.request p + p { margin-top: 28px; }
+.request .plate { font-size: 24px; text-transform: none; background: var(--wall-yellow); overflow-wrap: anywhere; }
+footer { background: var(--paper); }
+footer::before { content: ''; display: block; height: 8px; max-width: 1144px; margin: 0 auto 28px; border: 2px solid var(--black); border-radius: 8px; background: linear-gradient(to right, var(--wall-red) 0% 20%, var(--wall-cyan) 20% 40%, var(--wall-yellow) 40% 60%, var(--wall-lilac) 60% 80%, var(--wall-green) 80% 100%); }
 footer .small a { text-decoration: underline; }
 
-@media (max-width: 760px) {
+@media (max-width: 1100px) {
   .top .wrap { height: 64px; }
-  .bsign b { font-size: 20px; }
-  .nav { background: var(--white); border-bottom: 3px solid var(--blue); }
-  .hero { grid-template-columns: 1fr; }
-  .hero .txt { padding: 36px 16px; }
-  .hero .ph { order: -1; }
-  .svcs, .cards, .refs, .studio-gallery { grid-template-columns: 1fr; }
+  .burger { display: block; }
+  .nav { display: none; position: absolute; top: 64px; left: 0; right: 0; flex-direction: column; align-items: stretch; padding: 8px; background: var(--paper); border-bottom: 3px solid var(--black); }
+  .nav.open { display: flex; }
+  .nav a { padding: 12px; font-size: 20px; }
+  .lang { align-self: flex-start; margin: 8px 12px; }
+  section { scroll-margin-top: 64px; }
+}
+@media (min-width: 761px) and (max-width: 1100px) {
+  .hero h1 { font-size: 8.5vw; }
+  .hero .txt { padding-right: 24px; }
+  .hero .ph { padding: 28px 20px; }
+  .cards { grid-template-columns: 1fr; }
+  .card.studio-card { display: grid; grid-template-columns: 1fr 1fr; align-items: center; }
+  .card.studio-card img { border-bottom: 0; border-right: 3px solid var(--black); }
+  .svcs, .equipment-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 760px) {
+  .bsign b { font-size: 24px; }
+  .hero { grid-template-columns: 1fr; padding: 30px 0 36px; }
+  .hero .txt { padding: 0 16px 32px; }
+  .hero h1 { font-size: clamp(60px, 16vw, 112px); margin-top: 18px; }
+  .hero .hero-slogan { font-size: 28px; margin: 14px 0 20px; }
+  .hero p { font-size: 18px; }
+  .hero .ph { margin: 0 16px; padding: 28px 24px; border-radius: 24px 40px 24px 32px; }
+  .hero .ph .bsign { margin-top: 14px; }
+  .svcs, .cards, .refs, .studio-gallery, .equipment-grid { grid-template-columns: 1fr; }
+  .equipment-group { padding: 24px 20px; }
   section { padding: 64px 0; }
-  .ref { grid-template-columns: 100px 1fr; }
+  .head { gap: 12px; }
+  .head h2 { font-size: clamp(42px, 10vw, 64px); }
+  .num { width: 44px; height: 44px; font-size: 24px; }
+  .ref { grid-template-columns: 100px minmax(0, 1fr); gap: 16px; }
   .ref img { width: 100px; height: 100px; }
-  .partner { flex-direction: column; align-items: start; }
+  .ref h3 { font-size: 30px; }
+  .partner { grid-template-columns: 1fr; }
+  .partner:not(:has(.partner-photo)) { flex-direction: column; align-items: start; }
+  .partner-copy { padding: 24px 20px; }
   .big { font-size: 64px; }
   .tag359 { display: none; }
   .studio-heart img { aspect-ratio: 4 / 3; }
+  .request { padding: 36px 16px; }
+  .request .wrap { padding: 28px 20px; }
+  .request p { font-size: 18px; }
+  .request .plate { font-size: 20px; padding: 6px 10px; max-width: 100%; }
+  footer::before { margin-inline: 16px; }
 }
-
-@media (min-width: 761px) and (max-width: 1100px) {
-  .cards { grid-template-columns: 1fr; }
-  .card.studio-card { display: grid; grid-template-columns: 1fr 1fr; align-items: center; }
-}
-.request p + p { margin-top: 28px; }
-.request .plate { font-size: 24px; text-transform: none; }
