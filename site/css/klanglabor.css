@@ -87,7 +87,7 @@ section { padding: 96px 0; scroll-margin-top: 80px; }
 .studio-photos figcaption { padding: 14px 20px; border-top: 3px solid var(--black); }
 .drum-room { position: relative; aspect-ratio: 3 / 4; overflow: hidden; }
 .drum-room img { position: absolute; width: 210%; max-width: none; height: auto; aspect-ratio: auto; left: -74.5%; top: -18%; }
-.studio-heart img { width: 100%; height: auto; aspect-ratio: 2 / 1; object-fit: cover; object-position: center 80%; }
+.studio-heart img { width: 100%; height: auto; }
 .studio-heart figcaption { background: var(--wall-yellow); }
 
 .equipment-intro { max-width: 680px; margin: -12px 0 28px; font-size: 20px; }
@@ -157,7 +157,6 @@ footer .small a { text-decoration: underline; }
   .partner-copy { padding: 24px 20px; }
   .big { font-size: 64px; }
   .tag359 { display: none; }
-  .studio-heart img { aspect-ratio: 4 / 3; }
   .request { padding: 36px 16px; }
   .request .wrap { padding: 28px 20px; }
   .request p { font-size: 18px; }
