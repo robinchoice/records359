@@ -19,6 +19,10 @@ function setLang(lang) {
     if (el.dataset.deContent === undefined) el.dataset.deContent = el.content;
     el.content = lang === 'en' ? el.dataset.enContent : el.dataset.deContent;
   });
+  document.querySelectorAll('[data-en-alt]').forEach(el => {
+    if (el.dataset.deAlt === undefined) el.dataset.deAlt = el.alt;
+    el.alt = lang === 'en' ? el.dataset.enAlt : el.dataset.deAlt;
+  });
   document.querySelectorAll('.lang').forEach(b => { b.textContent = lang === 'en' ? 'DE' : 'EN'; });
   localStorage.setItem('records359-lang', lang);
 }
