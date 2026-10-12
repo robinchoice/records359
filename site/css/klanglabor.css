@@ -62,7 +62,6 @@ section { padding: 96px 0; scroll-margin-top: 80px; }
 .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
 .card { background: var(--paper); border-radius: 14px; overflow: hidden; border: 3px solid var(--black); display: flex; flex-direction: column; }
 .card img { width: 100%; height: 300px; object-fit: cover; border-bottom: 3px solid var(--black); }
-.card.studio-card img { height: auto; }
 .card .in { padding: 26px; }
 .card h3 { font-size: 40px; margin: 14px 0; }
 .card.mob { background: var(--wall-cyan); }
@@ -130,8 +129,6 @@ footer .small a { text-decoration: underline; }
   .hero .txt { padding-right: 24px; }
   .hero .ph { padding: 28px 20px; }
   .cards { grid-template-columns: 1fr; }
-  .card.studio-card { display: grid; grid-template-columns: 1fr 1fr; align-items: center; }
-  .card.studio-card img { border-bottom: 0; border-right: 3px solid var(--black); }
   .svcs, .equipment-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 760px) {
