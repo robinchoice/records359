@@ -28,3 +28,11 @@ img:hover { outline: 3px dashed #e5007e; outline-offset: -3px; }
 .edit-actions { display: flex; justify-content: flex-end; gap: 8px; }
 .edit-actions button { padding: 8px 14px; border: 1px solid #111; border-radius: 4px; background: #fff; font: inherit; cursor: pointer; }
 .edit-actions button[value=save] { background: #111; color: #fff; }
+.edit-bar {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 8px 16px;
+  background: #e5007e; color: #fff; font: 13px/1.4 system-ui, sans-serif; scroll-margin-top: 90px;
+}
+.edit-bar span { margin-right: auto; }
+.edit-bar button { padding: 4px 10px; border: 1px solid #fff; border-radius: 4px; background: transparent; color: #fff; font: inherit; cursor: pointer; }
+.edit-bar button:disabled { opacity: .4; cursor: default; }
+.edit-bar button.confirm { background: #fff; color: #b00020; font-weight: 600; }

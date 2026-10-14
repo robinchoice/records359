@@ -12,7 +12,7 @@ Keine automatischen Checks. Geänderte Seiten lokal ansehen (`python3 -m http.se
 
 ## Texte bearbeiten
 
-`python3 tools/edit.py` startet die Seite lokal unter http://127.0.0.1:8359/ mit Bearbeitungsmodus: Jedes Element mit `data-en` lässt sich anklicken und direkt bearbeiten, in der gerade angezeigten Sprache. Enter speichert ins HTML, Shift+Enter bricht die Zeile um, Esc verwirft. Ein Klick auf ein Bild öffnet die Auswahl aus `site/img` samt Upload: Neue Bilder wandelt Pillow in WebP mit 700 und 1400 px um, beim Tausch passen sich `srcset`, Galerie-Link, Höhe und beide Alt-Texte an. Ersetzte Bilder bleiben liegen, vor dem Commit ungenutzte aus `site/img` löschen. Danach Diff prüfen, committen, pushen. `tools/` wird nicht deployt.
+`python3 tools/edit.py` startet die Seite lokal unter http://127.0.0.1:8359/ mit Bearbeitungsmodus: Jedes Element mit `data-en` lässt sich anklicken und direkt bearbeiten, in der gerade angezeigten Sprache. Enter speichert ins HTML, Shift+Enter bricht die Zeile um, Esc verwirft. Ein Klick auf ein Bild öffnet die Auswahl aus `site/img` samt Upload: Neue Bilder wandelt Pillow in WebP mit 700 und 1400 px um, beim Tausch passen sich `srcset`, Galerie-Link, Höhe und beide Alt-Texte an. Ersetzte Bilder bleiben liegen, vor dem Commit ungenutzte aus `site/img` löschen. Pinke Leisten über jedem Block in `<main>` verschieben oder löschen ihn. Blöcke beginnen dafür auf einer nicht eingerückten Zeile, die Navigation im Header und die Nummern (`span.num`) ziehen mit. Danach Diff prüfen, committen, pushen. `tools/` wird nicht deployt.
 
 ## Deploy
 

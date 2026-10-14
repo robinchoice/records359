@@ -5,7 +5,8 @@ Every element with a data-en attribute becomes editable. Saving writes the
 German text (element content) or the English text (data-en) back into the
 HTML source and leaves the rest of the file untouched. Images can be swapped
 for another one from site/img or a new upload, which is converted to WebP in
-700 and 1400 px.
+700 and 1400 px. The top-level blocks of <main> can be moved up, moved down
+or deleted; nav links and section numbers follow.
 
     python3 tools/edit.py [port]   # then open http://127.0.0.1:8359/
 """
@@ -145,6 +146,56 @@ def swap(page, index, base, alt, alt_en):
     path.write_text(src, encoding="utf-8")
 
 
+def blocks(src):
+    """Splits a page at its top-level <main> blocks, which start on unindented lines."""
+    head, rest = src.split("<main>\n", 1)
+    body, tail = rest.split("\n</main>", 1)
+    starts = [m.start() for m in re.finditer(r"^<(?!/)", body, re.M)]
+    parts = [body[a:b].rstrip() for a, b in zip(starts, starts[1:] + [len(body)])]
+    return head + "<main>\n", parts, "\n</main>" + tail
+
+
+def section_id(part):
+    m = re.match(r'<\w+[^>]*\sid="([^"]+)"', part)
+    return m and m[1]
+
+
+def arrange(page, index, ref, action):
+    path = page_file(page)
+    head, parts, tail = blocks(path.read_text(encoding="utf-8"))
+    if ref not in parts[index].split("\n", 1)[0]:
+        raise ValueError("the page changed, please reload")
+    note = ""
+    if action in ("up", "down"):
+        other = index - 1 if action == "up" else index + 1
+        if not 0 <= other < len(parts):
+            raise ValueError("already at the edge")
+        parts[index], parts[other] = parts[other], parts[index]
+    elif action == "delete":
+        sid = section_id(parts.pop(index))
+        if sid:
+            head = re.sub(rf'\n[ \t]*<a href="#{re.escape(sid)}"[^\n]*', "", head)
+            left = "".join(parts).count(f'href="#{sid}"')
+            if left:
+                note = f"{left} Link(s) zeigen noch auf #{sid}"
+    else:
+        raise ValueError(f"unknown action {action}")
+    # Header nav follows the section order; links with a class (CTA buttons) stay put.
+    order = [sid for sid in map(section_id, parts) if sid]
+    nav = re.search(r'<nav class="nav" id="nav">.*?</nav>', head, re.S)
+    if nav:
+        lines = nav[0].split("\n")
+        ids = {i: m[1] for i, line in enumerate(lines)
+               if (m := re.fullmatch(r'\s*<a href="#([\w-]+)" data-en=.*', line)) and m[1] in order}
+        for i, line in zip(ids, sorted((lines[i] for i in ids), key=lambda l: order.index(re.search(r'#([\w-]+)', l)[1]))):
+            lines[i] = line
+        head = head[:nav.start()] + "\n".join(lines) + head[nav.end():]
+    numbers = iter(range(1, 100))
+    body = re.sub(r'<span class="num">\d+</span>', lambda m: f'<span class="num">{next(numbers)}</span>', "\n\n".join(parts))
+    path.write_text(head + body + tail, encoding="utf-8")
+    return note
+
+
 class Handler(SimpleHTTPRequestHandler):
     def end_headers(self):
         self.send_header("Cache-Control", "no-store")
@@ -176,6 +227,10 @@ class Handler(SimpleHTTPRequestHandler):
             if url.path == "/__edit/upload":
                 base = upload(parse_qs(url.query)["name"][0], body)
                 return self.send(200, json.dumps(base).encode(), "application/json")
+            if url.path == "/__edit/arrange":
+                data = json.loads(body)
+                note = arrange(data["page"], data["index"], data["ref"], data["action"])
+                return self.send(200, note.encode(), "text/plain")
             if url.path == "/__edit/image":
                 data = json.loads(body)
                 swap(data["page"], data["index"], data["base"], data["alt"], data["altEn"])

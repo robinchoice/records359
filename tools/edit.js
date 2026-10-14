@@ -2,7 +2,7 @@
 const els = [...document.querySelectorAll('[data-en]')];
 const status = document.createElement('div');
 status.className = 'edit-status';
-status.textContent = 'Bearbeiten: Text oder Bild anklicken · Enter speichert · Shift+Enter Zeilenumbruch · Esc verwirft';
+status.textContent = 'Bearbeiten: Text oder Bild anklicken, Abschnitte über die pinken Leisten · Enter speichert · Shift+Enter Zeilenumbruch · Esc verwirft';
 document.body.append(status);
 
 function show(text, error) {
@@ -155,3 +155,49 @@ document.addEventListener('click', e => {
   e.preventDefault();
   openPanel(img);
 }, true);
+
+// Sections: a bar above each top-level block of <main> to move or delete it.
+const main = document.querySelector('main:not([class])');
+const names = { hero: 'Einstieg', band: 'Fotoband' };
+[...(main?.children ?? [])].forEach((block, index, all) => {
+  const ref = block.id ? `id="${block.id}"` : `class="${block.getAttribute('class')}"`;
+  const name = block.querySelector('h2')?.textContent ?? names[block.className] ?? block.className;
+  const bar = document.createElement('div');
+  bar.className = 'edit-bar';
+  bar.dataset.ref = ref;
+  bar.innerHTML = `<span>Abschnitt: <b></b></span><button type="button" value="up">↑ nach oben</button><button type="button" value="down">↓ nach unten</button><button type="button" value="delete">Löschen</button>`;
+  bar.querySelector('b').textContent = name;
+  bar.querySelector('[value=up]').disabled = index === 0;
+  bar.querySelector('[value=down]').disabled = index === all.length - 1;
+  bar.addEventListener('click', async e => {
+    const action = e.target.value;
+    if (!action) return;
+    if (action === 'delete' && !e.target.classList.contains('confirm')) {
+      e.target.classList.add('confirm');
+      e.target.textContent = 'Wirklich löschen?';
+      return;
+    }
+    const res = await fetch('/__edit/arrange', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ page: location.pathname, index, ref, action }),
+    });
+    const note = await res.text();
+    if (!res.ok) return show(`Nicht gespeichert: ${note}`, true);
+    sessionStorage.setItem('edit-note', note);
+    if (action !== 'delete') sessionStorage.setItem('edit-scroll', ref);
+    location.reload();
+  });
+  block.before(bar);
+});
+
+const note = sessionStorage.getItem('edit-note');
+if (note !== null) show(note ? `Gespeichert. Achtung: ${note}` : 'Gespeichert', !!note);
+const scrollTo = sessionStorage.getItem('edit-scroll');
+if (scrollTo) {
+  // Otherwise the browser restores the old scroll position after load.
+  history.scrollRestoration = 'manual';
+  addEventListener('load', () => document.querySelector(`.edit-bar[data-ref='${scrollTo}']`)?.scrollIntoView());
+}
+sessionStorage.removeItem('edit-note');
+sessionStorage.removeItem('edit-scroll');
