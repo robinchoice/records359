@@ -80,19 +80,11 @@ section { padding: 96px 0; scroll-margin-top: 80px; }
 
 .studio-photos { margin-top: 48px; }
 .studio-photos h3 { font-size: 40px; margin-bottom: 24px; }
-.studio-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
-.studio-photos figure { margin: 0; border: 3px solid var(--black); border-radius: 14px; overflow: hidden; background: var(--paper); }
-.studio-gallery img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
-.studio-photos figcaption { padding: 14px 20px; border-top: 3px solid var(--black); }
-.drum-room { position: relative; aspect-ratio: 3 / 4; overflow: hidden; }
-.drum-room img { position: absolute; width: 210%; max-width: none; height: auto; aspect-ratio: auto; left: -74.5%; top: -18%; }
-.studio-heart img { width: 100%; height: auto; }
 .sessions-intro { max-width: 680px; margin: -8px 0 24px; font-size: 20px; }
 .gallery { columns: 4 220px; column-gap: 12px; }
 .gallery a { display: block; margin-bottom: 12px; break-inside: avoid; border: 3px solid var(--black); border-radius: 10px; overflow: hidden; background: var(--paper); }
 .gallery img { display: block; width: 100%; height: auto; }
 .gallery a:hover img { opacity: .85; }
-.studio-heart figcaption { background: var(--wall-yellow); }
 
 .equipment-intro { max-width: 680px; margin: -12px 0 28px; font-size: 20px; }
 .equipment-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
@@ -160,7 +152,7 @@ footer .small a { text-decoration: underline; }
   .hero p { font-size: 18px; }
   .hero .ph { margin: 0 16px; padding: 28px 24px; border-radius: 24px 40px 24px 32px; }
   .hero .ph .bsign { margin-top: 14px; }
-  .svcs, .cards, .refs, .studio-gallery, .equipment-grid { grid-template-columns: 1fr; }
+  .svcs, .cards, .refs, .equipment-grid { grid-template-columns: 1fr; }
   .equipment-group { padding: 24px 20px; }
   section { padding: 64px 0; }
   .head { gap: 12px; }
