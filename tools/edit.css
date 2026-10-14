@@ -7,3 +7,24 @@
   font: 13px/1.4 system-ui, sans-serif; box-shadow: 0 2px 8px rgba(0, 0, 0, .3);
 }
 .edit-status.error { background: #b00020; }
+img { cursor: pointer; }
+img:hover { outline: 3px dashed #e5007e; outline-offset: -3px; }
+.edit-panel {
+  width: min(760px, calc(100vw - 24px)); max-height: calc(100vh - 24px); padding: 18px; border: 0; border-radius: 10px;
+  display: none; flex-direction: column; gap: 12px; font: 14px/1.4 system-ui, sans-serif; color: #111; background: #fff;
+}
+.edit-panel[open] { display: flex; }
+.edit-panel::backdrop { background: rgba(0, 0, 0, .6); }
+.edit-panel h2 { margin: 0; font: 600 18px system-ui, sans-serif; text-transform: none; letter-spacing: 0; }
+.edit-panel label { display: flex; flex-direction: column; gap: 4px; }
+.edit-panel input:not([type=file]) { padding: 6px 8px; border: 1px solid #999; border-radius: 4px; font: inherit; }
+.edit-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 6px;
+  min-height: 120px; overflow-y: auto; flex: 1 1 auto; max-height: 45vh;
+}
+.edit-grid button { padding: 0; border: 3px solid transparent; border-radius: 4px; background: #eee; cursor: pointer; aspect-ratio: 1; }
+.edit-grid button.chosen { border-color: #e5007e; }
+.edit-grid img { width: 100%; height: 100%; object-fit: cover; display: block; outline: 0; }
+.edit-actions { display: flex; justify-content: flex-end; gap: 8px; }
+.edit-actions button { padding: 8px 14px; border: 1px solid #111; border-radius: 4px; background: #fff; font: inherit; cursor: pointer; }
+.edit-actions button[value=save] { background: #111; color: #fff; }

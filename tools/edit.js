@@ -2,7 +2,7 @@
 const els = [...document.querySelectorAll('[data-en]')];
 const status = document.createElement('div');
 status.className = 'edit-status';
-status.textContent = 'Bearbeiten: Text anklicken · Enter speichert · Shift+Enter Zeilenumbruch · Esc verwirft';
+status.textContent = 'Bearbeiten: Text oder Bild anklicken · Enter speichert · Shift+Enter Zeilenumbruch · Esc verwirft';
 document.body.append(status);
 
 function show(text, error) {
@@ -71,4 +71,87 @@ document.addEventListener('click', e => {
   if (!el) return;
   e.preventDefault();
   if (!el.isContentEditable) edit(el);
+}, true);
+
+// Images: click one to swap it for another from site/img or a new upload.
+const imgs = [...document.querySelectorAll('img')];
+const panel = document.createElement('dialog');
+panel.className = 'edit-panel';
+panel.innerHTML = `
+  <h2>Bild tauschen</h2>
+  <label>Neues Bild hochladen (JPG, PNG, WebP) <input type="file" accept="image/jpeg,image/png,image/webp"></label>
+  <div class="edit-grid"></div>
+  <label>Beschreibung DE <input name="alt"></label>
+  <label>Beschreibung EN <input name="altEn"></label>
+  <div class="edit-actions"><button type="button" value="cancel">Abbrechen</button><button type="button" value="save">Übernehmen</button></div>`;
+document.body.append(panel);
+const grid = panel.querySelector('.edit-grid');
+let target, chosen;
+
+function choose(base) {
+  chosen = base;
+  grid.querySelectorAll('button').forEach(b => b.classList.toggle('chosen', b.dataset.base === base));
+}
+
+function addThumb(base, first) {
+  const b = document.createElement('button');
+  b.type = 'button';
+  b.dataset.base = base;
+  b.innerHTML = `<img src="/img/${base}-700.webp" loading="lazy" alt="${base}">`;
+  b.title = base;
+  b.addEventListener('click', () => choose(base));
+  if (first) grid.prepend(b);
+  else grid.append(b);
+}
+
+async function openPanel(img) {
+  target = img;
+  const current = img.getAttribute('src').match(/^\/img\/(.+)-(?:700|1400)\.webp$/);
+  if (!current) return show('Dieses Bild lässt sich nicht tauschen', true);
+  grid.replaceChildren();
+  (await (await fetch('/__edit/images')).json()).forEach(base => addThumb(base));
+  choose(current[1]);
+  panel.querySelector('[name=alt]').value = img.dataset.deAlt ?? img.alt;
+  panel.querySelector('[name=altEn]').value = img.dataset.enAlt;
+  panel.showModal();
+  grid.querySelector('.chosen')?.scrollIntoView({ block: 'center' });
+}
+
+panel.querySelector('[type=file]').addEventListener('change', async e => {
+  const file = e.target.files[0];
+  if (!file) return;
+  show('Lade hoch und wandle um …');
+  const res = await fetch(`/__edit/upload?name=${encodeURIComponent(file.name)}`, { method: 'POST', body: file });
+  e.target.value = '';
+  if (!res.ok) return show(`Upload fehlgeschlagen: ${await res.text()}`, true);
+  const base = await res.json();
+  addThumb(base, true);
+  choose(base);
+  grid.scrollTop = 0;
+  show(`Hochgeladen: ${base}`);
+});
+
+panel.querySelector('.edit-actions').addEventListener('click', async e => {
+  if (e.target.value === 'cancel') return panel.close();
+  if (e.target.value !== 'save') return;
+  const res = await fetch('/__edit/image', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      page: location.pathname,
+      index: imgs.indexOf(target),
+      base: chosen,
+      alt: panel.querySelector('[name=alt]').value.trim(),
+      altEn: panel.querySelector('[name=altEn]').value.trim(),
+    }),
+  });
+  if (!res.ok) return show(`Nicht gespeichert: ${await res.text()}`, true);
+  location.reload();
+});
+
+document.addEventListener('click', e => {
+  const img = e.target.closest('img');
+  if (!img || panel.contains(img)) return;
+  e.preventDefault();
+  openPanel(img);
 }, true);
