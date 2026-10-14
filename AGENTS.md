@@ -4,7 +4,7 @@
 
 - Website von 359 Records (Label, Management) unter https://359records.de und vom Studio Klanglabor unter https://klanglabor.359records.de. Statisches HTML, CSS und JS ohne Build im Ordner `site/`.
 - Coolify auf VPS 1, Projekt `records359`, Anwendung `records359-site` (Static, nginx). Beide Hostnamen bedient dieselbe Anwendung.
-- Gestaltung nach Mockup B „Ortsschild“: Das Label ist ein gelbes Ortsschild, das Klanglabor ein blaues Hinweisschild. Schrift Barlow und Barlow Condensed, lokal unter `site/fonts/`.
+- Gestaltung: Das Label ist gelb und schwarz mit großen Fotos, ohne Ortsschilder und ohne Bous-Strecke. Die Herkunft des Namens steht nur als ein Satz im Netzwerk-Abschnitt. Das Klanglabor folgt dem Wandbild im Studio und dem Türschild (Farben in `css/klanglabor.css`). Schrift Barlow und Barlow Condensed, lokal unter `site/fonts/`.
 
 ## Checks
 
