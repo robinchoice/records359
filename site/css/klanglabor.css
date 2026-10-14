@@ -87,6 +87,11 @@ section { padding: 96px 0; scroll-margin-top: 80px; }
 .drum-room { position: relative; aspect-ratio: 3 / 4; overflow: hidden; }
 .drum-room img { position: absolute; width: 210%; max-width: none; height: auto; aspect-ratio: auto; left: -74.5%; top: -18%; }
 .studio-heart img { width: 100%; height: auto; }
+.sessions-intro { max-width: 680px; margin: -8px 0 24px; font-size: 20px; }
+.gallery { columns: 4 220px; column-gap: 12px; }
+.gallery a { display: block; margin-bottom: 12px; break-inside: avoid; border: 3px solid var(--black); border-radius: 10px; overflow: hidden; background: var(--paper); }
+.gallery img { display: block; width: 100%; height: auto; }
+.gallery a:hover img { opacity: .85; }
 .studio-heart figcaption { background: var(--wall-yellow); }
 
 .equipment-intro { max-width: 680px; margin: -12px 0 28px; font-size: 20px; }
@@ -160,3 +165,4 @@ footer .small a { text-decoration: underline; }
   .request .plate { font-size: 20px; padding: 6px 10px; max-width: 100%; }
   footer::before { margin-inline: 16px; }
 }
+@media (max-width: 760px) { .gallery { columns: 2; column-gap: 8px; } .gallery a { margin-bottom: 8px; border-width: 2px; } .sessions-intro { font-size: 18px; } }
