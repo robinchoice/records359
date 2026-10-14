@@ -67,12 +67,12 @@ section { padding: 96px 0; scroll-margin-top: 80px; }
 .card.mob { background: var(--wall-cyan); }
 .card:nth-child(3) { background: var(--wall-lilac); }
 .big { font: 800 80px/1 var(--cond); margin-top: 18px; }
-.partner { display: grid; grid-template-columns: 2fr 3fr; align-items: stretch; border: 3px solid var(--black); border-radius: 14px; overflow: hidden; margin-top: 32px; background: var(--paper); }
+.partner { display: grid; grid-template-columns: 2fr 3fr; align-items: center; gap: 28px; padding: 28px; border: 3px solid var(--black); border-radius: 14px; overflow: hidden; margin-top: 32px; background: var(--paper); }
 .partner:not(:has(.partner-photo)) { display: flex; gap: 24px; padding: 24px 28px; }
-.partner-photo { position: relative; margin: 0; min-width: 0; min-height: 280px; border-right: 3px solid var(--black); }
-.partner-photo > a, .partner-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.partner-photo { position: relative; margin: 0; min-width: 0; border: 3px solid var(--black); border-radius: 10px; overflow: hidden; }
+.partner-photo img { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; }
 .partner-photo figcaption { position: absolute; left: 12px; bottom: 12px; padding: 3px 10px; font-size: 13px; background: var(--paper); border: 2px solid var(--black); border-radius: 6px; }
-.partner-copy { align-self: center; padding: 28px; min-width: 0; }
+.partner-copy { min-width: 0; }
 .partner h3 { font-size: 32px; margin: 12px 0; }
 .partner h3 a { text-decoration-thickness: 2px; text-underline-offset: 4px; }
 .partner p { margin: 0 0 18px; }
@@ -170,9 +170,8 @@ footer .small a { text-decoration: underline; }
   .ref img { width: 100px; height: 100px; }
   .ref h3 { font-size: 30px; }
   .partner { grid-template-columns: 1fr; }
-  .partner-photo { min-height: 0; aspect-ratio: 3 / 2; border-right: 0; border-bottom: 3px solid var(--black); }
+  .partner { gap: 20px; padding: 20px; }
   .partner:not(:has(.partner-photo)) { flex-direction: column; align-items: start; }
-  .partner-copy { padding: 24px 20px; }
   .big { font-size: 64px; }
   .tag359 { display: none; }
   .request { padding: 36px 16px; }
