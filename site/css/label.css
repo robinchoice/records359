@@ -26,15 +26,7 @@ section { padding: 96px 0; }
 .head h2 { font-size: clamp(48px, 7vw, 92px); }
 .pill { background: var(--black); color: var(--yellow); padding: 4px 10px; border-radius: 4px; font: 700 15px var(--cond); text-transform: uppercase; letter-spacing: .06em; }
 
-/* Artists */
-.artists { display: grid; gap: 14px; }
-.way { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 24px; background: var(--yellow); padding: 24px 28px; border-radius: 14px; }
-.way h3 { font-size: clamp(38px, 5vw, 64px); }
-.way p { margin: 8px 0 0; max-width: 640px; }
-.way .where { text-align: right; font: 700 20px var(--cond); text-transform: uppercase; }
-
 /* Productions */
-.productions { padding-top: 0; }
 .rel { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
 .rel .cover { aspect-ratio: 1; border: 3px solid var(--black); border-radius: 14px; overflow: hidden; }
 .rel .cover img { width: 100%; height: 100%; object-fit: cover; }
@@ -85,8 +77,6 @@ footer { border-top: 3px solid var(--black); }
   .band img { height: 160px; }
   .band figure:first-child img { height: 220px; }
   section { padding: 64px 0; }
-  .way { grid-template-columns: 1fr; padding: 18px; gap: 6px; }
-  .way .where { text-align: left; order: -1; font-size: 16px; }
   .cta h3 { font-size: 40px; }
 }
 
