@@ -104,6 +104,21 @@ section { padding: 96px 0; scroll-margin-top: 80px; }
 .equipment-group li { padding: 10px 0; overflow-wrap: anywhere; }
 .equipment-group li + li { border-top: 1px solid #d5d0c5; }
 
+.about-grid { display: grid; grid-template-columns: 2fr 3fr; gap: 48px; align-items: start; }
+.about-intro figure { margin: 0 0 24px; border: 3px solid var(--black); border-radius: 14px; overflow: hidden; }
+.about-intro img { display: block; width: 100%; height: auto; }
+.about-intro p { font-size: 20px; margin: 0; }
+.timeline { list-style: none; margin: 0; padding: 0; border-left: 3px solid var(--black); }
+.timeline li { position: relative; padding: 0 0 26px 28px; }
+.timeline li::before { content: ''; position: absolute; left: -11px; top: 4px; width: 16px; height: 16px; border: 3px solid var(--black); border-radius: 50%; background: var(--wall-yellow); }
+.timeline li:nth-child(5n+2)::before { background: var(--wall-cyan); }
+.timeline li:nth-child(5n+3)::before { background: var(--wall-red); }
+.timeline li:nth-child(5n+4)::before { background: var(--wall-lilac); }
+.timeline li:nth-child(5n)::before { background: var(--wall-green); }
+.timeline .when { font: 800 26px/1.1 var(--cond); text-transform: uppercase; }
+.timeline p { margin: 6px 0 0; max-width: 640px; }
+.about .num { background: var(--wall-cyan); }
+
 .refs { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
 .ref { display: grid; grid-template-columns: 160px 1fr; gap: 20px; align-items: center; border-bottom: 3px solid var(--black); padding-bottom: 20px; }
 .ref img { width: 160px; height: 160px; object-fit: cover; border: 3px solid var(--black); border-radius: 10px; }
@@ -165,4 +180,4 @@ footer .small a { text-decoration: underline; }
   .request .plate { font-size: 20px; padding: 6px 10px; max-width: 100%; }
   footer::before { margin-inline: 16px; }
 }
-@media (max-width: 760px) { .gallery { columns: 2; column-gap: 8px; } .gallery a { margin-bottom: 8px; border-width: 2px; } .sessions-intro { font-size: 18px; } }
+@media (max-width: 760px) { .about-grid { grid-template-columns: 1fr; gap: 28px; } .about-intro p { font-size: 18px; } .gallery { columns: 2; column-gap: 8px; } .gallery a { margin-bottom: 8px; border-width: 2px; } .sessions-intro { font-size: 18px; } }
