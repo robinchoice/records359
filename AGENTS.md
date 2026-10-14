@@ -10,6 +10,10 @@
 
 Keine automatischen Checks. Geänderte Seiten lokal ansehen (`python3 -m http.server -d site`, Klanglabor unter `/klanglabor/`), Desktop und Handy, beide Sprachen.
 
+## Texte bearbeiten
+
+`python3 tools/edit.py` startet die Seite lokal unter http://127.0.0.1:8359/ mit Bearbeitungsmodus: Jedes Element mit `data-en` lässt sich anklicken und direkt bearbeiten, in der gerade angezeigten Sprache. Enter speichert ins HTML, Shift+Enter bricht die Zeile um, Esc verwirft. Danach Diff prüfen, committen, pushen. `tools/` wird nicht deployt.
+
 ## Deploy
 
 - Coolify deployt per Repo-Webhook bei jedem Push auf `main`, der `site/` ändert. Ein Push geht also direkt live.
